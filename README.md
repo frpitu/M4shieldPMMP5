@@ -5,7 +5,7 @@ Em Fase Beta, Reporte Bugs Nas Issues
 
 ## 🌌 - M4theuskkj (Criador)
 - [YouTube](https://youtube.com/@m4theus.wtfkkj)
-- Discord: @m4theuskkj
+- Discord: m4theus.wtfkkj
 ## 🌌 - frpitu (PMMP5 Remix)
 - [YouTube](https://youtube.com/@pitupler)
 - Twitter: @frpitu
