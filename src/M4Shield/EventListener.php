@@ -9,8 +9,7 @@ use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\event\player\PlayerChatEvent;
-use pocketmine\event\player\PlayerChatEvent;
-use pocketmine\item\Item;
+use pocketmine\item\VanillaItems;
 use pocketmine\player\Player;
 
 use M4Shield\Main;
@@ -62,14 +61,14 @@ class EventListener implements Listener {
 
     public function onLogin(PlayerLoginEvent $event): void {
         $player = $event->getPlayer();
-        $ip = $player->getAddress();
+        $ip = $player->getNetworkSession()->getAddress();
         $users = 0;
         $antibotEnabled = $this->getConfig()->getNested("antibot.enabled", true);
         $antibotMaxCount = $this->getConfig()->getNested("antibot.maxCount", 4);
 
         if ($antibotEnabled) {
             foreach ($this->getServer()->getOnlinePlayers() as $onlinePlayer) {
-                if ($ip == $onlinePlayer->getAddress()) {
+                if ($ip == $onlinePlayer->getNetworkSession()->getAddress()) {
                     $users++;
                 }
             }
