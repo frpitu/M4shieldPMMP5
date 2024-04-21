@@ -12,3 +12,9 @@ Em Fase Beta, Reporte Bugs Nas Issues
 - VK: @frpitu
 - Ig: @lguizzism
 - Discord: frpitu
+## 🌌 - Terpz710 (PMMP5 Remix)
+- [YouTube](https://youtube.com/@Terpz710)
+- Twitter: NONE
+- VK: NONE
+- Ig: PRIVATE
+- Discord: ace87. or ace873056.
