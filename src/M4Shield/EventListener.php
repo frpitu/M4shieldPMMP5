@@ -2,14 +2,16 @@
 
 namespace M4Shield;
 
+use pocketmine\utils\Config;
+use pocketmine\Server;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerItemHeldEvent;
-use pocketmine\event\player\PlayerCommandPreprocessEvent;
+use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\item\Item;
-use pocketmine\Player;
+use pocketmine\player\Player;
 
 use M4Shield\Main;
 
@@ -21,16 +23,16 @@ class EventListener implements Listener {
         $this->main = $main;
     }
 
-    private function getServer(): \pocketmine\Server {
+    private function getServer(): Server {
         return $this->main->getServer();
     }
 
-    private function getConfig(): \pocketmine\utils\Config {
+    private function getConfig(): Config {
         return $this->main->getConfig();
     }
 
     private function removeBlockedItem(Player $player): void {
-        $player->getInventory()->setItemInHand(Item::get(0, 0));
+        $player->getInventory()->setItemInHand(VanillaItems::AIR());
     }
 
     private function processBlockedWords(string $message): string {
@@ -80,14 +82,14 @@ class EventListener implements Listener {
     public function onUse(PlayerInteractEvent $event): void {
         $player = $event->getPlayer();
         $item = $event->getItem();
-        $id = $item->getId();
+        $id = $item->getTypeId();
         $antigriefEnabled = $this->getConfig()->getNested("antigrief.enabled", true);
         $blockedItems = $this->getConfig()->getNested("antigrief.blockedItems", []);
 
         if ($antigriefEnabled && in_array($id, $blockedItems)) {
             $this->removeBlockedItem($player);
             $player->sendMessage($this->getConfig()->getNested("antigrief.message", "§8[§bM4Shield§8] §cEste item está bloqueado."));
-            $event->setCancelled(true);
+            $event->cancel();
         }
     }
 }
