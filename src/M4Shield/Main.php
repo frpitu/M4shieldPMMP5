@@ -43,4 +43,3 @@ class Main extends PluginBase {
         return $this->config;
     }
 }
-?>
